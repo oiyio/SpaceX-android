@@ -61,7 +61,7 @@ class LaunchListActivity : BaseActivity() {
                 binding.epoxyList.withModels {
 
                     launches.forEach {
-                        Log.d("how many", ":${it} ")
+                        Log.d("omertest", ":${it} ")
                         entry {
                             id(hashCode())
                             name(it?.site())

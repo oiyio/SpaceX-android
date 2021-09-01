@@ -1,3 +1,8 @@
+TODO :
+- SpaceX'den veriler çekilecek.
+- Pagination yapılacak.
+
+
 <h1 align="center">Welcome to SpaceX app 👋</h1>
 <p align="center">
  <a href="https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE">
