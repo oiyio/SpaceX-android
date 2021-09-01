@@ -1,4 +1,4 @@
-package com.example.spacex.launchlist
+package com.example.spacex.features.launchlist
 
 import LaunchDetailsQuery
 import android.util.Log

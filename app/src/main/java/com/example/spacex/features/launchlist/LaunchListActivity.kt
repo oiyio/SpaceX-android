@@ -1,4 +1,4 @@
-package com.example.spacex.launchlist
+package com.example.spacex.features.launchlist
 
 import AllLaunchDetailsQuery
 import android.os.Bundle
@@ -10,7 +10,6 @@ import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
 import com.example.spacex.BaseActivity
 import com.example.spacex.R
-import com.example.spacex.data.Entry
 import com.example.spacex.epoxy.entry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*

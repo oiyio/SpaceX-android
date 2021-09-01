@@ -1,6 +1,5 @@
-package com.example.spacex.ui.activity
+package com.example.spacex.features.launchdetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.spacex.BaseActivity
 import com.example.spacex.R

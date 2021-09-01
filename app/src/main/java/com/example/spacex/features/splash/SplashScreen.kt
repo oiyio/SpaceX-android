@@ -1,4 +1,4 @@
-package com.example.spacex.ui.activity
+package com.example.spacex.features.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.core.app.ActivityOptionsCompat
 import com.bumptech.glide.Glide
 import com.example.spacex.BaseActivity
 import com.example.spacex.R
-import com.example.spacex.launchlist.LaunchListActivity
+import com.example.spacex.features.launchlist.LaunchListActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashScreen : BaseActivity() {
