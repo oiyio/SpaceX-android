@@ -20,9 +20,16 @@ object Versions {
     const val buildToolsVersion = "30.0.2"
     const val minSdk = 19
     const val targetSdk = 30
-    const val applicationId = "com.ttech.android.onlineislem"
-    const val versionCode = 161
-    const val versionName = "14.5.0"
+    const val applicationId = "com.omeriyioz.spacex"
+    const val versionCode = 1
+    const val versionName = "1.0"
+
+    //Coroutines
+    const val coroutinesVersion = "1.4.3"
+
+    const val activityKtxVersion = "1.2.0"
+    const val fragmentKtxVersion = "1.3.0"
+    const val fragmentVersion = "1.2.5"
 }
 
 fun DependencyHandlerScope.lifeCycleDependencies() {

@@ -11,20 +11,20 @@ import com.example.spacex.BaseActivity
 import com.example.spacex.R
 import com.example.spacex.features.launchlist.LaunchListActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-/*import androidx.lifecycle.lifecycleScope*/
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class SplashScreen : BaseActivity() {
+class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        /*lifecycleScope.launch{
-
-        }*/
-        Handler().postDelayed({
+        lifecycleScope.launch{
+            delay(2000)
             startAnimation()
-        }, 2000)
+        }
     }
 
     private fun startAnimation() {

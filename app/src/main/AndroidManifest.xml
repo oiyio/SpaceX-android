@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name="com.example.spacex.features.launchdetail.NewsDetails"></activity>
-        <activity android:name="com.example.spacex.features.splash.SplashScreen">
+        <activity android:name="com.example.spacex.features.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

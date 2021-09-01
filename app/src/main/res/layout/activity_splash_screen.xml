@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_backgroun_color"
     app:layoutDescription="@xml/moon_scene"
-    tools:context=".features.splash.SplashScreen">
+    tools:context=".features.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/gif_image"

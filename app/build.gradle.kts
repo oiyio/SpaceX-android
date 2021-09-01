@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -63,6 +62,14 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
     testImplementation("junit:junit:4.13.2")
+
+    lifeCycleDependencies()
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}")
+
+    implementation("androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}")
+    implementation("androidx.fragment:fragment:${Versions.fragmentVersion}")
+    implementation("androidx.activity:activity-ktx:${Versions.activityKtxVersion}")
 }
 
 
