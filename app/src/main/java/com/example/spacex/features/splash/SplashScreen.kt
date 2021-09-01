@@ -11,6 +11,7 @@ import com.example.spacex.BaseActivity
 import com.example.spacex.R
 import com.example.spacex.features.launchlist.LaunchListActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
+/*import androidx.lifecycle.lifecycleScope*/
 
 class SplashScreen : BaseActivity() {
 
@@ -18,7 +19,9 @@ class SplashScreen : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        // showTheMoonManWithMagic()
+        /*lifecycleScope.launch{
+
+        }*/
         Handler().postDelayed({
             startAnimation()
         }, 2000)
