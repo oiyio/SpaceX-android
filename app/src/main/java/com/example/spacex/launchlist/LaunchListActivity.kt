@@ -1,48 +1,39 @@
-package com.example.spacex.ui.activity
+package com.example.spacex.launchlist
 
 import AllLaunchDetailsQuery
-import LaunchDetailsQuery
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.airbnb.epoxy.EpoxyController
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
-import com.example.spacex.MyApplication
-import com.example.spacex.MyApplication_HiltComponents
+import com.example.spacex.BaseActivity
 import com.example.spacex.R
 import com.example.spacex.data.Entry
-import com.example.spacex.data.Launch
 import com.example.spacex.epoxy.entry
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import java.util.ArrayList
-import java.util.Map.entry
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NewsActivity : AppCompatActivity() {
-    private var entries = mutableListOf<Entry>(Entry("mejdi"), Entry("aymen"))
+class LaunchListActivity : BaseActivity() {
 
     @Inject
     lateinit var client: ApolloClient
+
     lateinit var epoxyList: EpoxyRecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         showLottieAnimation()
         epoxyList = findViewById(R.id.epoxyList)
-
 
         val scope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -86,7 +77,6 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun showLottieAnimation() {
-
         animation_view.playAnimation()
     }
 

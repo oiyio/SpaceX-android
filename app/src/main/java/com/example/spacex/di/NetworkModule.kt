@@ -1,23 +1,26 @@
-package com.example.spacex.hilt
+package com.example.spacex.di
 
 import com.apollographql.apollo.ApolloClient
-import com.example.spacex.constant.constants.GRAPHQL_API_URL
+import com.example.spacex.AppConstants.GRAPHQL_API_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
-object ApolloClient {
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
 
     @Singleton
     @Provides
     fun provideApolloClient(): ApolloClient {
-        val logging = HttpLoggingClient.providesHttpLoggingClient()
-        var okHttpClient = OkHttpClient
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        val okHttpClient = OkHttpClient
             .Builder()
             .addInterceptor(logging)
 
@@ -26,6 +29,5 @@ object ApolloClient {
             .okHttpClient(okHttpClient.build())
             .build()
     }
-
 }
 

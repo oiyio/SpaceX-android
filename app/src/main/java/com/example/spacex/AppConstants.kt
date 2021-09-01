@@ -1,5 +1,5 @@
-package com.example.spacex.constant
+package com.example.spacex
 
-object constants {
+object AppConstants {
     const val GRAPHQL_API_URL = "https://spacex-nestjs-server.herokuapp.com/graphql"
 }

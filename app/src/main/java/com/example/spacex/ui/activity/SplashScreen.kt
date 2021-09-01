@@ -1,21 +1,23 @@
 package com.example.spacex.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.app.ActivityOptionsCompat
 import com.bumptech.glide.Glide
+import com.example.spacex.BaseActivity
 import com.example.spacex.R
+import com.example.spacex.launchlist.LaunchListActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+
         // showTheMoonManWithMagic()
         Handler().postDelayed({
             startAnimation()
@@ -172,9 +174,9 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun startNewsActivity() {
-        val intent = Intent(this, NewsActivity::class.java)
+        val intent = Intent(this, LaunchListActivity::class.java)
         val options =
-            ActivityOptionsCompat.makeSceneTransitionAnimation(this, mars, "transition_image")
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, mars, "transition_image")
         startActivity(intent, options.toBundle())
     }
 

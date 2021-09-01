@@ -1,9 +1,8 @@
-package com.example.spacex.viewmodel
+package com.example.spacex.launchlist
 
 import androidx.lifecycle.ViewModel
-import com.example.spacex.repository.LaunchesRespository
 
-class LaunchesViewModel : ViewModel(){
+class LaunchListViewModel : ViewModel(){
     var launchesRespository : LaunchesRespository? = null
 
     init {
