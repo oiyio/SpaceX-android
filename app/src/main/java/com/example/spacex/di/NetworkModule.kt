@@ -1,7 +1,6 @@
 package com.example.spacex.di
 
 import com.apollographql.apollo.ApolloClient
-import com.example.spacex.AppConstants.GRAPHQL_API_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +12,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    const val GRAPHQL_API_URL = "https://spacex-nestjs-server.herokuapp.com/graphql"
 
     @Singleton
     @Provides
