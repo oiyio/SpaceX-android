@@ -4,17 +4,14 @@ import AllLaunchDetailsQuery
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.airbnb.epoxy.EpoxyRecyclerView
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
 import com.example.spacex.BaseActivity
-import com.example.spacex.R
 import com.example.spacex.databinding.ActivityLaunchListBinding
 import com.example.spacex.epoxy.entry
 import com.example.spacex.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_launch_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -55,11 +52,11 @@ class LaunchListActivity : BaseActivity() {
                 // handle application errors
                 return@launch
             } else {
-                animation_view.pauseAnimation()
+                binding.animationView.pauseAnimation()
 
-                animation_view.visibility = View.INVISIBLE
-                loading_text.visibility = View.INVISIBLE
-                falcon.visibility = View.VISIBLE
+                binding.animationView.visibility = View.INVISIBLE
+                binding.loadingText.visibility = View.INVISIBLE
+                binding.falcon.visibility = View.VISIBLE
 
                 binding.epoxyList.withModels {
 
@@ -80,7 +77,7 @@ class LaunchListActivity : BaseActivity() {
     }
 
     private fun showLottieAnimation() {
-        animation_view.playAnimation()
+        binding.animationView.playAnimation()
     }
 
 
