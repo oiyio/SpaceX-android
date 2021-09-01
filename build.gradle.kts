@@ -1,22 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.apollo_version = "2.3.1"
+
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven {
             url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
         }
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url = uri("https://plugins.gradle.org/m2/")
         }
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin"
-        classpath("com.apollographql.apollo:apollo-gradle-plugin:$Versions.apollo")
-        classpath "com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger_hilt}"
+        classpath ("com.android.tools.build:gradle:4.1.3")
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("com.apollographql.apollo:apollo-gradle-plugin:${Versions.apollo}")
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:9.4.0")
     }
 }
@@ -24,11 +24,13 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+
+tasks.register("clean") {
+    doLast {
+        delete(rootProject.buildDir)
+    }
 }

@@ -48,7 +48,7 @@ class LaunchListActivity : BaseActivity() {
                 return@launch
             }
 
-            val launches = response.data?.launches?.reversed()
+            val launches = response.data?.launches()?.reversed()
 
             if (launches == null || response.hasErrors()) {
                 // handle application errors
@@ -63,9 +63,9 @@ class LaunchListActivity : BaseActivity() {
                         Log.d("how many", ":${it} ")
                         entry {
                             id(hashCode())
-                            name(it?.site)
-                            date(it?.launch_date_utc.toString())
-                            mission(it?.mission?.name)
+                            name(it?.site())
+                            date(it?.launch_date_utc().toString())
+                            mission(it?.mission()?.name())
                         }
                     })
                 }
