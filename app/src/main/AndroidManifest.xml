@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.spacex.features.launchdetail.NewsDetails"></activity>
+        <activity android:name="com.example.spacex.features.launchdetail.LaunchDetail"></activity>
         <activity android:name="com.example.spacex.features.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -10,9 +10,11 @@ import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
 import com.example.spacex.BaseActivity
 import com.example.spacex.R
+import com.example.spacex.databinding.ActivityLaunchListBinding
 import com.example.spacex.epoxy.entry
+import com.example.spacex.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_launch_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,14 +27,13 @@ class LaunchListActivity : BaseActivity() {
     @Inject
     lateinit var client: ApolloClient
 
-    lateinit var epoxyList: EpoxyRecyclerView
+    val binding: ActivityLaunchListBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         showLottieAnimation()
-        epoxyList = findViewById(R.id.epoxyList)
 
         val scope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -55,11 +56,14 @@ class LaunchListActivity : BaseActivity() {
                 return@launch
             } else {
                 animation_view.pauseAnimation()
+
                 animation_view.visibility = View.INVISIBLE
                 loading_text.visibility = View.INVISIBLE
                 falcon.visibility = View.VISIBLE
-                epoxyList.withModels {
-                    launches.forEach(fun(it: AllLaunchDetailsQuery.Launch?) {
+
+                binding.epoxyList.withModels {
+
+                    launches.forEach {
                         Log.d("how many", ":${it} ")
                         entry {
                             id(hashCode())
@@ -67,10 +71,10 @@ class LaunchListActivity : BaseActivity() {
                             date(it?.launch_date_utc().toString())
                             mission(it?.mission()?.name())
                         }
-                    })
+                    }
+
                 }
             }
-
 
         }
     }
