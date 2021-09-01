@@ -1,4 +1,4 @@
-package com.example.spacex.features.launchlist
+package com.omeriyioz.spacex.features.launchlist
 
 import androidx.lifecycle.ViewModel
 

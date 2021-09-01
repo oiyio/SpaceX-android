@@ -1,3 +1,3 @@
-package com.example.spacex.data
+package com.omeriyioz.spacex.data
 
 data class Entry(val name: String)

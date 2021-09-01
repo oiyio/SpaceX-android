@@ -1,4 +1,4 @@
-package com.example.spacex.epoxy
+package com.omeriyioz.spacex.epoxy
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
-import com.example.spacex.R
+import com.omeriyioz.spacex.R
 import kotlinx.android.synthetic.main.entry_item.view.*
 import kotlin.random.Random
 import com.airbnb.epoxy.EpoxyModelWithHolder as EpoxyModelWithHolder1

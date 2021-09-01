@@ -1,9 +1,9 @@
-package com.example.spacex.features.launchdetail
+package com.omeriyioz.spacex.features.launchdetail
 
 import android.os.Bundle
-import com.example.spacex.BaseActivity
-import com.example.spacex.databinding.ActivityLaunchDetailBinding
-import com.example.spacex.viewbinding.viewBinding
+import com.omeriyioz.spacex.BaseActivity
+import com.omeriyioz.spacex.databinding.ActivityLaunchDetailBinding
+import com.omeriyioz.spacex.viewbinding.viewBinding
 
 class LaunchDetail : BaseActivity() {
 
@@ -12,7 +12,6 @@ class LaunchDetail : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.spacex.di
+package com.omeriyioz.spacex.di
 
 import com.apollographql.apollo.ApolloClient
 import dagger.Module

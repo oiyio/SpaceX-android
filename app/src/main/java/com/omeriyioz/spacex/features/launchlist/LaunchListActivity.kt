@@ -1,4 +1,4 @@
-package com.example.spacex.features.launchlist
+package com.omeriyioz.spacex.features.launchlist
 
 import AllLaunchDetailsQuery
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.View
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
-import com.example.spacex.BaseActivity
-import com.example.spacex.databinding.ActivityLaunchListBinding
-import com.example.spacex.epoxy.entry
-import com.example.spacex.viewbinding.viewBinding
+import com.omeriyioz.spacex.BaseActivity
+import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
+import com.omeriyioz.spacex.epoxy.entry
+import com.omeriyioz.spacex.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.example.spacex.features.splash
+package com.omeriyioz.spacex.features.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.util.Log
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.app.ActivityOptionsCompat
 import com.bumptech.glide.Glide
-import com.example.spacex.BaseActivity
-import com.example.spacex.R
-import com.example.spacex.features.launchlist.LaunchListActivity
+import com.omeriyioz.spacex.BaseActivity
+import com.omeriyioz.spacex.R
+import com.omeriyioz.spacex.features.launchlist.LaunchListActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay

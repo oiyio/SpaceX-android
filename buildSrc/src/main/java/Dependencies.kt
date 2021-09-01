@@ -1,6 +1,14 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 object Versions {
+    const val compileSdk = 30
+    const val buildToolsVersion = "30.0.2"
+    const val minSdk = 19
+    const val targetSdk = 30
+    const val applicationId = "com.omeriyioz.spacex"
+    const val versionCode = 1
+    const val versionName = "1.0"
+    
     const val recyclerView = "1.1.0"
     const val retrofitConverterGson = "2.9.0"
     const val glide = "4.11.0"
@@ -16,13 +24,7 @@ object Versions {
 
     const val jvmTarget = "1.8"
 
-    const val compileSdk = 30
-    const val buildToolsVersion = "30.0.2"
-    const val minSdk = 19
-    const val targetSdk = 30
-    const val applicationId = "com.omeriyioz.spacex"
-    const val versionCode = 1
-    const val versionName = "1.0"
+
 
     //Coroutines
     const val coroutinesVersion = "1.4.3"

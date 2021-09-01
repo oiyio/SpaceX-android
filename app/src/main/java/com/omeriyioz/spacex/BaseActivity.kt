@@ -1,4 +1,4 @@
-package com.example.spacex
+package com.omeriyioz.spacex
 
 import android.os.Bundle
 import android.util.Log

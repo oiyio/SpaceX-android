@@ -1,4 +1,4 @@
-package com.example.spacex.viewbinding
+package com.omeriyioz.spacex.viewbinding
 
 
 import android.app.Activity
