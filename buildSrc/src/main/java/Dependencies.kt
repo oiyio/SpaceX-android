@@ -9,13 +9,13 @@ object Versions {
     const val versionCode = 1
     const val versionName = "1.0"
     
-    const val recyclerView = "1.1.0"
+    const val recyclerView = "1.2.1"
     const val retrofitConverterGson = "2.9.0"
     const val glide = "4.11.0"
     const val epoxy = "4.1.0"
     const val epoxyProcessor = "4.1.0"
     const val hilt = "2.37"
-    const val apollo = "2.3.1"
+    const val apollo = "2.5.4"
     const val kotlin = "1.4.30"
 
     const val lifecycleVersion = "2.2.0"

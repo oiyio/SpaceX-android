@@ -2,84 +2,84 @@ package com.omeriyioz.spacex.features.launchlist
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.coroutines.toDeferred
-import com.apollographql.apollo.exception.ApolloException
-import com.omeriyioz.spacex.AllLaunchesQuery
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.omeriyioz.spacex.BaseActivity
+import com.omeriyioz.spacex.ViewState
 import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
-import com.omeriyioz.spacex.epoxy.entry
 import com.omeriyioz.spacex.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LaunchListActivity : BaseActivity() {
 
-    @Inject
-    lateinit var client: ApolloClient
-
     val binding: ActivityLaunchListBinding by viewBinding()
+
+    private val viewModel: LaunchListViewModel by viewModels()
+
+    val adapter = LaunchesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        showLottieAnimation()
+        /*showLottieAnimation()*/
 
-        val scope = CoroutineScope(Dispatchers.Main + Job())
+        binding.recyclerViewLaunchList.adapter = adapter
+        binding.recyclerViewLaunchList.layoutManager = LinearLayoutManager(this)
 
-        fetchDataFromServer(scope)
+
+        viewModel.fetchDataFromServer()
+
+        observeLiveData()
     }
 
-    private fun fetchDataFromServer(scope: CoroutineScope) {
-        scope.launch {
-            val response = try {
-                client.query(AllLaunchesQuery()).toDeferred().await()
-            } catch (e: ApolloException) {
-                fetchDataFromServer(this)
-                return@launch
-            }
+    private fun observeLiveData() {
 
-            val launches = response.data?.launches?.reversed()
-
-            if (launches == null || response.hasErrors()) {
-                // handle application errors
-                return@launch
-            } else {
-                binding.animationView.pauseAnimation()
-
-                binding.animationView.visibility = View.INVISIBLE
-                binding.loadingText.visibility = View.INVISIBLE
-                binding.falcon.visibility = View.VISIBLE
-
-                binding.epoxyList.withModels {
-
-                    launches.forEach {
-                        Log.d("omertest", ":${it} ")
-                        entry {
-                            /*id(hashCode())
-                            name(it?.site())
-                            date(it?.launch_date_utc().toString())
-                            mission(it?.mission()?.name())*/
-                        }
+        viewModel.allLaunches.observe(this) { response ->
+            when (response) {
+                is ViewState.Loading -> {
+                    /* binding.charactersRv.visibility = View.GONE
+                     binding.charactersFetchProgress.visibility = View.VISIBLE*/
+                }
+                is ViewState.Success -> {
+                    val list = response.result.launches?.map {
+                        LaunchItem(id = it?.id?: "",
+                                details = it?.details?: "",
+                                launch_date_local = it?.launch_date_local.toString(),
+                                mission_name = it?.mission_name?:""
+                        )
                     }
-
+                    adapter.submitList(list)
+                    Log.d("omertest", "observeLiveData: ")
+                    //
+                    /*if (response.result.characters?.results?.size == 0) {
+                        characterAdapter.submitList(emptyList())
+                        binding.charactersFetchProgress.visibility = View.GONE
+                        binding.charactersRv.visibility = View.GONE
+                        binding.charactersEmptyText.visibility = View.VISIBLE
+                    } else {
+                        binding.charactersRv.visibility = View.VISIBLE
+                        binding.charactersEmptyText.visibility = View.GONE
+                    }
+                    val results = response.result.characters?.results
+                    characterAdapter.submitList(results)
+                    binding.charactersFetchProgress.visibility = View.GONE*/
+                }
+                is ViewState.Error -> {
+                    /*characterAdapter.submitList(emptyList())
+                    binding.charactersFetchProgress.visibility = View.GONE
+                    binding.charactersRv.visibility = View.GONE
+                    binding.charactersEmptyText.visibility = View.VISIBLE*/
                 }
             }
-
         }
     }
 
-    private fun showLottieAnimation() {
-        binding.animationView.playAnimation()
-    }
-
+    /* private fun showLottieAnimation() {
+         binding.animationView.playAnimation()
+     }
+ */
 
 }
 
