@@ -38,6 +38,10 @@ android {
         dataBinding = true
         viewBinding = true
     }
+
+    apollo {
+        generateKotlinModels.set(true)
+    }
 }
 
 dependencies {

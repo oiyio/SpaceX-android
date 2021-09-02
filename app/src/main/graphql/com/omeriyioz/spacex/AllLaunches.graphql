@@ -1,0 +1,8 @@
+query AllLaunches {
+    launches(limit: 10)  {
+        id
+        details
+        launch_date_local
+        mission_name
+    }
+}

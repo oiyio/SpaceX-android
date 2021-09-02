@@ -1,10 +1,10 @@
 package com.omeriyioz.spacex.features.launchlist
 
-import LaunchDetailsQuery
 import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
+import com.omeriyioz.spacex.LaunchDetailsQuery
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,7 +25,7 @@ class LaunchesRespository {
                 return@launch
             }
 
-            val launch = response.data?.launch()
+            val launch = response.data?.launchesPast
             if (launch == null || response.hasErrors()) {
                 // handle application errors
                 return@launch

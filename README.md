@@ -3,6 +3,32 @@ TODO :
 - Pagination yapılacak.
 
 
+https://api.spacex.land/graphql/
+
+https://medium.com/nerd-for-tech/android-tutorial-part-1-using-apollo-library-to-fetch-data-from-a-graphql-endpoint-61e8c58158de
+
+https://apollo-fullstack-tutorial.herokuapp.com/
+
+https://www.apollographql.com/docs/android/tutorial/02-add-the-graphql-schema/
+
+https://graphql.org/learn/schema/
+
+https://stackoverflow.com/questions/37397886/get-graphql-whole-schema-query
+
+kapt {
+    correctErrorTypes = true
+}
+
+
+apollo {
+    generateKotlinModels.set(true)
+}
+
+
+/*implementation (lifeCycleDependencies())*/
+
+
+
 <h1 align="center">Welcome to SpaceX app 👋</h1>
 <p align="center">
  <a href="https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE">

@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    const val GRAPHQL_API_URL = "https://spacex-nestjs-server.herokuapp.com/graphql"
+    const val GRAPHQL_API_URL = "https://api.spacex.land/graphql/"
 
     @Singleton
     @Provides

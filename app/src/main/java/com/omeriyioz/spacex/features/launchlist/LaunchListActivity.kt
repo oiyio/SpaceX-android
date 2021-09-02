@@ -1,12 +1,12 @@
 package com.omeriyioz.spacex.features.launchlist
 
-import AllLaunchDetailsQuery
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.exception.ApolloException
+import com.omeriyioz.spacex.AllLaunchesQuery
 import com.omeriyioz.spacex.BaseActivity
 import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
 import com.omeriyioz.spacex.epoxy.entry
@@ -40,13 +40,13 @@ class LaunchListActivity : BaseActivity() {
     private fun fetchDataFromServer(scope: CoroutineScope) {
         scope.launch {
             val response = try {
-                client.query(AllLaunchDetailsQuery()).toDeferred().await()
+                client.query(AllLaunchesQuery()).toDeferred().await()
             } catch (e: ApolloException) {
                 fetchDataFromServer(this)
                 return@launch
             }
 
-            val launches = response.data?.launches()?.reversed()
+            val launches = response.data?.launches?.reversed()
 
             if (launches == null || response.hasErrors()) {
                 // handle application errors
@@ -63,10 +63,10 @@ class LaunchListActivity : BaseActivity() {
                     launches.forEach {
                         Log.d("omertest", ":${it} ")
                         entry {
-                            id(hashCode())
+                            /*id(hashCode())
                             name(it?.site())
                             date(it?.launch_date_utc().toString())
-                            mission(it?.mission()?.name())
+                            mission(it?.mission()?.name())*/
                         }
                     }
 
