@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.omeriyioz.common.ViewState
+import com.omeriyioz.common.viewBinding
 import com.omeriyioz.spacex.BaseActivity
-import com.omeriyioz.spacex.ViewState
 import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
-import com.omeriyioz.spacex.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

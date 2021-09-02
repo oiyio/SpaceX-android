@@ -1,4 +1,4 @@
-package com.omeriyioz.spacex.viewbinding
+package com.omeriyioz.common
 
 
 import android.app.Activity

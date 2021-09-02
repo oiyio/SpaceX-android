@@ -1,4 +1,4 @@
-package com.omeriyioz.spacex
+package com.omeriyioz.common
 
 sealed class ViewState<out T : Any> {
 
@@ -7,4 +7,3 @@ sealed class ViewState<out T : Any> {
     object Loading : ViewState<Nothing>()
 
 }
-

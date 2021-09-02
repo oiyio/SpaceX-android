@@ -59,6 +59,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
 
+    api(project(":common"))
+
     implementation(Deps.dagger_hilt)
     kapt(Deps.dagger_hilt_compiler)
     implementation(Deps.epoxy)

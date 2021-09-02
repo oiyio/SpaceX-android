@@ -8,7 +8,7 @@ import com.omeriyioz.spacex.AllLaunchesQuery
 import com.omeriyioz.spacex.BaseRepository.Companion.GENERAL_ERROR_CODE
 import com.omeriyioz.spacex.BaseRepository.Companion.handleException
 import com.omeriyioz.spacex.BaseRepository.Companion.handleSuccess
-import com.omeriyioz.spacex.ViewState
+import com.omeriyioz.common.ViewState
 import javax.inject.Inject
 import javax.inject.Singleton
 

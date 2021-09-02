@@ -1,5 +1,7 @@
 package com.omeriyioz.spacex
 
+import com.omeriyioz.common.ViewState
+
 abstract class BaseRepository {
 
     companion object {
