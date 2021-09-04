@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.omeriyioz.spacex.AllLaunchesQuery
 import com.omeriyioz.common.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,14 +15,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LaunchListViewModel @Inject constructor(
-        var repository: LaunchesRepository
+        var dataSource: LaunchListPagingDataSource,
+
 ) : ViewModel(){
+
+    val flow = Pager(
+        PagingConfig(
+            pageSize = LOAD_SIZE,
+            enablePlaceholders = false,
+            initialLoadSize = LOAD_SIZE
+        )
+    ) {
+        dataSource
+    }.flow
+
 
     private val _allLaunches by lazy { MutableLiveData<ViewState<AllLaunchesQuery.Data>>() }
     val allLaunches: LiveData<ViewState<AllLaunchesQuery.Data>>
         get() = _allLaunches
 
-    fun fetchDataFromServer() {
+    /*fun fetchDataFromServer() {
         viewModelScope.launch {
 
             val response = repository.fetchDataFromServer()
@@ -42,42 +56,6 @@ class LaunchListViewModel @Inject constructor(
                 }
             }
 
-          /*  val response = try {
-                client.query(AllLaunchesQuery()).toDeferred().await()
-            } catch (e: ApolloException) {
-                fetchDataFromServer(this)
-                return@launch
-            }
-
-            val launches = response.data?.launches?.reversed()*/
-
-            Log.d("omertest", "fetchDataFromServer: ")
-
-            /*if (launches == null || response.hasErrors()) {
-                // handle application errors
-                return@launch
-            } else {
-                binding.animationView.pauseAnimation()
-
-                binding.animationView.visibility = View.INVISIBLE
-                binding.loadingText.visibility = View.INVISIBLE
-                binding.falcon.visibility = View.VISIBLE
-
-                binding.epoxyList.withModels {
-
-                    launches.forEach {
-                        Log.d("omertest", ":${it} ")
-                        entry {
-                            *//*id(hashCode())
-                            name(it?.site())
-                            date(it?.launch_date_utc().toString())
-                            mission(it?.mission()?.name())*//*
-                        }
-                    }
-
-                }
-            }*/
-
         }
-    }
+    }*/
 }

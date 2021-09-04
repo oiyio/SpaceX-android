@@ -57,14 +57,12 @@ dependencies {
     implementation("com.apollographql.apollo:apollo-coroutines-support:${Versions.apollo}")
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
 
     api(project(":common"))
 
     implementation(Deps.dagger_hilt)
     kapt(Deps.dagger_hilt_compiler)
-    implementation(Deps.epoxy)
-    kapt(Deps.epoxy_processor)
     implementation(Deps.recyclerView)
     implementation(Deps.retrofit_converter_gson)
     implementation(Deps.glide)
@@ -80,6 +78,8 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}")
     implementation("androidx.fragment:fragment:${Versions.fragmentVersion}")
     implementation("androidx.activity:activity-ktx:${Versions.activityKtxVersion}")
+
+    implementation("androidx.paging:paging-runtime-ktx:3.0.1")
 }
 
 

@@ -1,5 +1,5 @@
-query AllLaunches {
-    launches(limit: 10)  {
+query AllLaunches($offset: Int, $limit: Int) {
+    launches(offset: $offset, limit: $limit)   {
         id
         details
         launch_date_local

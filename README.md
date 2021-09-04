@@ -5,11 +5,19 @@ TODO :
 
 https://api.spacex.land/graphql/
 
+https://github.com/metinozcura/RickAndMorty
+
+https://github.com/prudhvir3ddy/spacex-android-graphql
+
+
 https://medium.com/nerd-for-tech/android-tutorial-part-1-using-apollo-library-to-fetch-data-from-a-graphql-endpoint-61e8c58158de
 
 https://apollo-fullstack-tutorial.herokuapp.com/
 
 https://www.apollographql.com/docs/android/tutorial/02-add-the-graphql-schema/
+https://github.com/codinginflow/ImageSearchApp
+
+https://www.youtube.com/watch?v=y2M8gLBUeW4&ab_channel=CodinginFlow
 
 https://graphql.org/learn/schema/
 
@@ -57,7 +65,6 @@ apollo {
 ## Technologies
 - kotlin
 - Apollo Graphql
-- Epoxy
 - Dagger Hilt
 - Github Actions
 
