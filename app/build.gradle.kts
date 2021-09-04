@@ -62,6 +62,7 @@ dependencies {
     api(project(":common"))
 
     implementation(Deps.dagger_hilt)
+    implementation("com.google.android.material:material:1.4.0")
     kapt(Deps.dagger_hilt_compiler)
     implementation(Deps.recyclerView)
     implementation(Deps.retrofit_converter_gson)

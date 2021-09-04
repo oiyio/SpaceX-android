@@ -1,16 +1,13 @@
 package com.omeriyioz.spacex.features.launchlist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.omeriyioz.spacex.AllLaunchesQuery
 import com.omeriyioz.common.ViewState
+import com.omeriyioz.spacex.AllLaunchesQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

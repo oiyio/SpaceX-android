@@ -2,16 +2,20 @@ package com.omeriyioz.spacex.features.launchlist
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.omeriyioz.common.ViewState
+import com.google.android.material.snackbar.Snackbar
 import com.omeriyioz.common.viewBinding
 import com.omeriyioz.spacex.BaseActivity
 import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 
@@ -40,6 +44,8 @@ class LaunchListActivity : BaseActivity() {
         // observeLiveData()
 
         observeLaunchListDataFlow()
+
+        observeViewState()
     }
 
     private fun observeLaunchListDataFlow() {
@@ -50,53 +56,68 @@ class LaunchListActivity : BaseActivity() {
         }
     }
 
-    /*private fun observeLiveData() {
+    private fun observeViewState() {
+        lifecycleScope.launch {
+            adapter.loadStateFlow
+                // Only emit when REFRESH LoadState changes.
+                .distinctUntilChangedBy { it.refresh }
+                // Only react to cases where REFRESH completes i.e., NotLoading.
+                .filter { it.refresh is LoadState.NotLoading }
+                .collect {
+                    binding.recyclerViewLaunchList.scrollToPosition(0)
+                }
+        }
+        lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest { loadState ->
 
-        viewModel.allLaunches.observe(this) { response ->
-            when (response) {
-                is ViewState.Loading -> {
-                    *//* binding.charactersRv.visibility = View.GONE
-                     binding.charactersFetchProgress.visibility = View.VISIBLE*//*
-                }
-                is ViewState.Success -> {
-                    val list = response.result.launches?.map {
-                        LaunchItem(id = it?.id?: "",
-                                details = it?.details?: "",
-                                launch_date_local = it?.launch_date_local.toString(),
-                                mission_name = it?.mission_name?:""
-                        )
+                Log.d("omertest-- 2 ", " " + loadState.append)
+                when (loadState.append) {
+                    is LoadState.Loading -> {
+                        showLoadingView()
+                        Log.d("omertest", "Loading: ")
                     }
-                    adapter.submitList(list)
-                    Log.d("omertest", "observeLiveData: ")
-                    //
-                    *//*if (response.result.characters?.results?.size == 0) {
-                        characterAdapter.submitList(emptyList())
-                        binding.charactersFetchProgress.visibility = View.GONE
-                        binding.charactersRv.visibility = View.GONE
-                        binding.charactersEmptyText.visibility = View.VISIBLE
-                    } else {
-                        binding.charactersRv.visibility = View.VISIBLE
-                        binding.charactersEmptyText.visibility = View.GONE
+                    is LoadState.NotLoading -> {
+                        Log.d("omertest", "NotLoading: ")
+                        showNewData()
                     }
-                    val results = response.result.characters?.results
-                    characterAdapter.submitList(results)
-                    binding.charactersFetchProgress.visibility = View.GONE*//*
+                    is LoadState.Error -> {
+                        Log.d("omertest", "Error: ")
+                        Snackbar.make(
+                            binding.recyclerViewLaunchList,
+                            "error",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        showNoContentView()
+                    }
                 }
-                is ViewState.Error -> {
-                    *//*characterAdapter.submitList(emptyList())
-                    binding.charactersFetchProgress.visibility = View.GONE
-                    binding.charactersRv.visibility = View.GONE
-                    binding.charactersEmptyText.visibility = View.VISIBLE*//*
+                if (loadState.append.endOfPaginationReached) {
+                    if (adapter.itemCount < 1) {
+                        Log.d("omertest", "Loading: ")
+                        showNoContentView()
+                    }
                 }
             }
         }
-    }*/
+    }
 
-    /* private fun showLottieAnimation() {
-         binding.animationView.playAnimation()
-     }
- */
+    private fun showNewData() {
+       /* binding.ivEmpty.visibility = View.GONE*/
+        binding.progressBar.visibility = View.GONE
+    }
+
+    private fun showLoadingView() {
+        /*binding.ivEmpty.visibility = View.GONE*/
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun showNoContentView() {
+        Snackbar.make(
+            binding.recyclerViewLaunchList,
+            "Content not found",
+            Snackbar.LENGTH_SHORT
+        ).show()
+        /*binding.ivEmpty.visibility = View.VISIBLE*/
+        binding.progressBar.visibility = View.GONE
+    }
 
 }
-
-

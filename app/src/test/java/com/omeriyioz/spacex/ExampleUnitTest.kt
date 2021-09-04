@@ -13,5 +13,7 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+        val str = "abcdef"
+        println(str.substring(0,Math.min(str.length,10)))
     }
 }
