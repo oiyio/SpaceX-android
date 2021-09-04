@@ -25,7 +25,7 @@ class LaunchListActivity : BaseActivity() {
 
     private val viewModel: LaunchListViewModel by viewModels()
 
-    val adapter = LaunchListAdapter()
+    val launchListAdapter = LaunchListAdapter()
 
     private var job: Job? = null
 
@@ -35,13 +35,13 @@ class LaunchListActivity : BaseActivity() {
 
         /*showLottieAnimation()*/
 
-        binding.recyclerViewLaunchList.adapter = adapter
-        binding.recyclerViewLaunchList.layoutManager = LinearLayoutManager(this)
-
-
-        // viewModel.fetchDataFromServer()
-
-        // observeLiveData()
+        binding.recyclerViewLaunchList.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = launchListAdapter.withLoadStateFooter(
+                footer = MovieLoadStateAdapter { /*adapter.retry()*/ }
+            )
+        }
 
         observeLaunchListDataFlow()
 
@@ -51,14 +51,14 @@ class LaunchListActivity : BaseActivity() {
     private fun observeLaunchListDataFlow() {
         job = lifecycleScope.launch {
             viewModel.flow.collectLatest {
-                adapter.submitData(it)
+                launchListAdapter.submitData(it)
             }
         }
     }
 
     private fun observeViewState() {
         lifecycleScope.launch {
-            adapter.loadStateFlow
+            launchListAdapter.loadStateFlow
                 // Only emit when REFRESH LoadState changes.
                 .distinctUntilChangedBy { it.refresh }
                 // Only react to cases where REFRESH completes i.e., NotLoading.
@@ -67,57 +67,18 @@ class LaunchListActivity : BaseActivity() {
                     binding.recyclerViewLaunchList.scrollToPosition(0)
                 }
         }
-        lifecycleScope.launch {
-            adapter.loadStateFlow.collectLatest { loadState ->
 
-                Log.d("omertest-- 2 ", " " + loadState.append)
-                when (loadState.append) {
-                    is LoadState.Loading -> {
-                        showLoadingView()
-                        Log.d("omertest", "Loading: ")
-                    }
-                    is LoadState.NotLoading -> {
-                        Log.d("omertest", "NotLoading: ")
-                        showNewData()
-                    }
-                    is LoadState.Error -> {
-                        Log.d("omertest", "Error: ")
-                        Snackbar.make(
-                            binding.recyclerViewLaunchList,
-                            "error",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        showNoContentView()
-                    }
-                }
+        /*lifecycleScope.launch {
+            launchListAdapter.loadStateFlow.collectLatest { loadState ->
                 if (loadState.append.endOfPaginationReached) {
-                    if (adapter.itemCount < 1) {
-                        Log.d("omertest", "Loading: ")
-                        showNoContentView()
+                    if (launchListAdapter.itemCount < 1) {
+                        Log.d("omertest", "endOfPaginationReached: ")
                     }
                 }
             }
-        }
+        }*/
+
     }
 
-    private fun showNewData() {
-       /* binding.ivEmpty.visibility = View.GONE*/
-        binding.progressBar.visibility = View.GONE
-    }
-
-    private fun showLoadingView() {
-        /*binding.ivEmpty.visibility = View.GONE*/
-        binding.progressBar.visibility = View.VISIBLE
-    }
-
-    private fun showNoContentView() {
-        Snackbar.make(
-            binding.recyclerViewLaunchList,
-            "Content not found",
-            Snackbar.LENGTH_SHORT
-        ).show()
-        /*binding.ivEmpty.visibility = View.VISIBLE*/
-        binding.progressBar.visibility = View.GONE
-    }
 
 }
