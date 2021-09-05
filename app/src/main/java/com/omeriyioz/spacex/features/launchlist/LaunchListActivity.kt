@@ -1,13 +1,9 @@
 package com.omeriyioz.spacex.features.launchlist
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.omeriyioz.common.viewBinding
 import com.omeriyioz.spacex.BaseActivity
 import com.omeriyioz.spacex.databinding.ActivityLaunchListBinding
@@ -36,11 +32,14 @@ class LaunchListActivity : BaseActivity() {
         /*showLottieAnimation()*/
 
         binding.recyclerViewLaunchList.apply {
-            layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = launchListAdapter.withLoadStateFooter(
-                footer = MovieLoadStateAdapter { /*adapter.retry()*/ }
+                footer = LaunchListLoadStateAdapter { /*adapter.retry()*/ }
             )
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            launchListAdapter.refresh()
         }
 
         observeLaunchListDataFlow()
@@ -49,8 +48,8 @@ class LaunchListActivity : BaseActivity() {
     }
 
     private fun observeLaunchListDataFlow() {
-        job = lifecycleScope.launch {
-            viewModel.flow.collectLatest {
+        job = lifecycleScope.launchWhenCreated {
+            viewModel.locationsFlow.collectLatest {
                 launchListAdapter.submitData(it)
             }
         }
@@ -68,6 +67,12 @@ class LaunchListActivity : BaseActivity() {
                 }
         }
 
+        lifecycleScope.launch {
+            launchListAdapter.loadStateFlow.collectLatest {
+                binding.swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
+            }
+        }
+
         /*lifecycleScope.launch {
             launchListAdapter.loadStateFlow.collectLatest { loadState ->
                 if (loadState.append.endOfPaginationReached) {
@@ -79,6 +84,5 @@ class LaunchListActivity : BaseActivity() {
         }*/
 
     }
-
 
 }

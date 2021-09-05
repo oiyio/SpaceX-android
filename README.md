@@ -1,3 +1,10 @@
+
+- GraphQL
+- Pagination 3 and LoadStateAdapter
+- SwipeRefreshLayout
+- Coroutines
+- Flow
+
 TODO :
 - SpaceX'den veriler çekilecek.
 - Pagination yapılacak.

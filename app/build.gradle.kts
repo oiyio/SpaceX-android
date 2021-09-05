@@ -81,6 +81,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${Versions.activityKtxVersion}")
 
     implementation("androidx.paging:paging-runtime-ktx:3.0.1")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }
 
 

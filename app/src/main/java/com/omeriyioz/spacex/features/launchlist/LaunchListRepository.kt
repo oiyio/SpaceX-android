@@ -1,37 +1,25 @@
 package com.omeriyioz.spacex.features.launchlist
 
-import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Input
-import com.apollographql.apollo.coroutines.await
-import com.apollographql.apollo.exception.ApolloException
 import com.omeriyioz.spacex.AllLaunchesQuery
-import com.omeriyioz.spacex.BaseRepository.Companion.GENERAL_ERROR_CODE
-import com.omeriyioz.spacex.BaseRepository.Companion.handleException
-import com.omeriyioz.spacex.BaseRepository.Companion.handleSuccess
-import com.omeriyioz.common.ViewState
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class LaunchListRepository @Inject constructor(
-        private val client: ApolloClient
+    private val client: ApolloClient
 ) {
 
-    suspend fun getLaunchPadList(offset: Int, limit: Int): List<AllLaunchesQuery.Launch> {
-        val response =
-            client .query(
-                AllLaunchesQuery(
-                    offset = Input.fromNullable(offset),
-                    limit = Input.fromNullable(limit)
-                )
-            ).await()
-        return if (!response.hasErrors() && response.data != null) {
-            val launchpads = response.data?.launches!!
-            launchpads.filterNotNull()
-        } else {
-            throw Exception(response.errors?.toString())
-        }
-    }
+    fun getAllLaunches(): Flow<PagingData<AllLaunchesQuery.Launch>> = Pager(
+        PagingConfig(
+            pageSize = LOAD_SIZE,
+            enablePlaceholders = false,
+            initialLoadSize = LOAD_SIZE
+        )
+    ) {
+        LaunchListPagingDataSource(client)
+    }.flow
 
 }
