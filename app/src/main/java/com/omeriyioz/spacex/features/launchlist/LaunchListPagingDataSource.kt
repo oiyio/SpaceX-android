@@ -29,7 +29,7 @@ class LaunchListPagingDataSource @Inject constructor(
         return try {
             val offset = (params.key ?: START_INDEX)
             val limit = LOAD_SIZE
-            val response = getLaunchPadList(offset, limit)
+            val response = getLaunchList(offset, limit)
             Log.d("omertest", "$offset $limit $response")
             val nextKey = if (response.isNullOrEmpty()) {
                 null
@@ -48,7 +48,7 @@ class LaunchListPagingDataSource @Inject constructor(
 
     }
 
-    private suspend fun getLaunchPadList(offset: Int, limit: Int): List<AllLaunchesQuery.Launch> {
+    private suspend fun getLaunchList(offset: Int, limit: Int): List<AllLaunchesQuery.Launch> {
         val response =
             client.query(
                 AllLaunchesQuery(

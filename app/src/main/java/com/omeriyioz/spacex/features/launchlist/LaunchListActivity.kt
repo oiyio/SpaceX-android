@@ -17,19 +17,17 @@ import kotlinx.coroutines.launch
 
 class LaunchListActivity : BaseActivity() {
 
-    val binding: ActivityLaunchListBinding by viewBinding()
+    private val binding: ActivityLaunchListBinding by viewBinding()
 
     private val viewModel: LaunchListViewModel by viewModels()
 
-    val launchListAdapter = LaunchListAdapter()
+    private val launchListAdapter = LaunchListAdapter()
 
     private var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        /*showLottieAnimation()*/
 
         binding.recyclerViewLaunchList.apply {
             setHasFixedSize(true)
@@ -72,16 +70,6 @@ class LaunchListActivity : BaseActivity() {
                 binding.swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
             }
         }
-
-        /*lifecycleScope.launch {
-            launchListAdapter.loadStateFlow.collectLatest { loadState ->
-                if (loadState.append.endOfPaginationReached) {
-                    if (launchListAdapter.itemCount < 1) {
-                        Log.d("omertest", "endOfPaginationReached: ")
-                    }
-                }
-            }
-        }*/
 
     }
 

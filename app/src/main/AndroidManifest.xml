@@ -14,10 +14,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name="com.omeriyioz.spacex.features.launchdetail.LaunchDetail" />
-        <!--<activity android:name="com.omeriyioz.spacex.features.splash.SplashActivity">
+        <activity android:name="com.omeriyioz.spacex.features.launchdetail.LaunchDetailActivity" />
 
-        </activity>-->
         <activity android:name="com.omeriyioz.spacex.features.launchlist.LaunchListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
