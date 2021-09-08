@@ -17,10 +17,10 @@ class LaunchDetailActivity : BaseActivity() {
         setContentView(binding.root)
 
         viewModel.launchDetail.observe(this) {
-            binding.textViewLaunchDetail.text = it.id + " " + it.details
+            binding.textViewLaunchDetail.text = "ID : ${it.id} \nDetails : ${it.details}"
         }
 
-        intent.getStringExtra("lauch_id")?.let {
+        intent.getStringExtra("launch_id")?.let {
             viewModel.getLaunch(it)
         }
 

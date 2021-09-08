@@ -27,7 +27,7 @@ class LaunchListAdapter :
 
             itemView.setOnClickListener {
                  val intent = Intent(textViewDetails.context, LaunchDetailActivity::class.java)
-                 intent.putExtra("lauch_id", launch.id)
+                 intent.putExtra("launch_id", launch.id)
                  textViewDetails.context.startActivity(intent)
             }
         }
