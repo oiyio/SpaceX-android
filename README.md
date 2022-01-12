@@ -5,6 +5,7 @@
 - Coroutines
 - Flow
 
+
 https://api.spacex.land/graphql/
 
 https://github.com/metinozcura/RickAndMorty
@@ -27,14 +28,5 @@ https://graphql.org/learn/schema/
 
 https://stackoverflow.com/questions/37397886/get-graphql-whole-schema-query
 
-kapt {
-    correctErrorTypes = true
-}
-
-
-apollo {
-    generateKotlinModels.set(true)
-}
-
-
-/*implementation (lifeCycleDependencies())*/
+Starting from below initial project which shows an example of graphql usage, I refactored the project and added many new features.
+https://github.com/mejdi14/spacex-android-client
