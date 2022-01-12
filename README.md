@@ -5,11 +5,6 @@
 - Coroutines
 - Flow
 
-TODO :
-- SpaceX'den veriler çekilecek.
-- Pagination yapılacak.
-
-
 https://api.spacex.land/graphql/
 
 https://github.com/metinozcura/RickAndMorty

@@ -1,10 +1,10 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 object Versions {
-    const val compileSdk = 30
-    const val buildToolsVersion = "30.0.2"
+    const val compileSdk = 31
+    const val buildToolsVersion = "30.0.3"
     const val minSdk = 19
-    const val targetSdk = 30
+    const val targetSdk = 31
     const val applicationId = "com.omeriyioz.spacex"
     const val versionCode = 1
     const val versionName = "1.0"
@@ -12,7 +12,7 @@ object Versions {
     const val recyclerView = "1.2.1"
     const val retrofitConverterGson = "2.9.0"
     const val glide = "4.11.0"
-    const val hilt = "2.37"
+    const val hilt = "2.39"
     const val apollo = "2.5.4"
     const val kotlin = "1.4.30"
 

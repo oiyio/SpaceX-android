@@ -1,3 +1,3 @@
 include(":app")
-rootProject.name = "SpaceX"
+rootProject.name = "SpaceX by Ömer İyiöz"
 include(":common")

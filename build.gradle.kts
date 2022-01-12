@@ -13,8 +13,8 @@ buildscript {
     }
 
     dependencies {
-        classpath ("com.android.tools.build:gradle:4.1.3")
-        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
+        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
         classpath("com.apollographql.apollo:apollo-gradle-plugin:${Versions.apollo}")
         classpath ("com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:9.4.0")
